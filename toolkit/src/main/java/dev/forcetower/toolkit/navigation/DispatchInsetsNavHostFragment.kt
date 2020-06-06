@@ -1,4 +1,4 @@
-package dev.forcetower.toolkit.widget.ui
+package dev.forcetower.toolkit.navigation
 
 import android.os.Bundle
 import android.view.View
