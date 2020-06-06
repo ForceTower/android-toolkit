@@ -1,5 +1,6 @@
 package dev.forcetower.toolkit.database.dao
 
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Transaction
@@ -20,6 +21,12 @@ abstract class BaseDao<T> {
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
     abstract suspend fun update(value: T)
+
+    @Delete
+    abstract suspend fun delete(values: List<T>)
+
+    @Delete
+    abstract suspend fun delete(value: T)
 
     @Transaction
     open suspend fun insertOrUpdate(values: List<T>) {
