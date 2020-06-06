@@ -59,6 +59,11 @@ fun goneUnless(view: View, condition: Boolean) {
     view.visibility = if (condition) View.VISIBLE else View.GONE
 }
 
+@BindingAdapter("invisibleUnless")
+fun invisibleUnless(view: View, visible: Boolean) {
+    view.visibility = if (visible) View.VISIBLE else View.INVISIBLE
+}
+
 @BindingAdapter("swipeRefreshColors")
 fun setSwipeRefreshColors(swipeRefreshLayout: SwipeRefreshLayout, colorResIds: IntArray) {
     swipeRefreshLayout.setColorSchemeColors(*colorResIds)
