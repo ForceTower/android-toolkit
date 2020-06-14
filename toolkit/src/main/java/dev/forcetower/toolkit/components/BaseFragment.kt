@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.CallSuper
 import androidx.core.view.updatePadding
+import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import dagger.android.support.DaggerFragment
 import dev.forcetower.toolkit.extensions.doOnApplyWindowInsets
 import timber.log.Timber
 
-abstract class BaseFragment : DaggerFragment() {
+abstract class BaseFragment : Fragment() {
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         if (shouldApplyInsets()) {

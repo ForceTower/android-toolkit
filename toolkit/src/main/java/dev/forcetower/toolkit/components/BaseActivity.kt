@@ -1,9 +1,9 @@
 package dev.forcetower.toolkit.components
 
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import dagger.android.support.DaggerAppCompatActivity
 
-abstract class BaseActivity : DaggerAppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
     open fun showSnack(string: String, duration: Int = Snackbar.LENGTH_SHORT) {
         getSnackInstance(string, duration)?.show()
     }
