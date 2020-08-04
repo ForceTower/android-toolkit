@@ -73,7 +73,6 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:2.1.2"
 
     // Dependency injection
-    // Dependency injection
     implementation "com.google.dagger:hilt-android:$hilt_dagger"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_dagger"
 
