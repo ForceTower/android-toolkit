@@ -1,6 +1,7 @@
 package dev.forcetower.toolkit.bindings
 
 import android.view.View
+import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dev.forcetower.toolkit.extensions.doOnApplyWindowInsets
