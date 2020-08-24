@@ -8,6 +8,8 @@ import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -32,13 +34,13 @@ fun RecyclerView.clearDecorations() {
 }
 
 fun View.closeKeyboard() {
-    val service = ContextCompat.getSystemService(context, InputMethodManager::class.java)
-    service?.hideSoftInputFromWindow(windowToken, 0)
+    val controller = windowInsetsController
+    controller?.hide(WindowInsets.Type.ime())
 }
 
 fun View.openKeyboard() {
-    val service = ContextCompat.getSystemService(context, InputMethodManager::class.java)
-    service?.showSoftInput(this, 0)
+    val controller = windowInsetsController
+    controller?.show(WindowInsets.Type.ime())
 }
 
 fun View.fadeIn() {
@@ -48,9 +50,9 @@ fun View.fadeIn() {
     requestLayout()
 }
 
-fun View.doOnApplyWindowInsets(f: (View, WindowInsets, InitialPadding) -> Unit) {
+fun View.doOnApplyWindowInsets(f: (View, WindowInsetsCompat, InitialPadding) -> Unit) {
     val initialPadding = recordInitialPaddingForView(this)
-    setOnApplyWindowInsetsListener { v, insets ->
+    ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
         f(v, insets, initialPadding)
         insets
     }
