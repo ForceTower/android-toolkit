@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import jp.wasabeef.glide.transformations.BlurTransformation
 import jp.wasabeef.glide.transformations.SupportRSBlurTransformation
+import timber.log.Timber
 
 @BindingAdapter(value = [
     "imageUrl",
@@ -28,7 +29,7 @@ fun imageUrl(
     imageUrl: String?,
     imageUri: Uri?,
     clipCircle: Boolean?,
-    listener: ImageLoadListener?,
+    listener: RequestListener<Drawable>?,
     dontTransform: Boolean?,
     blurImage: Boolean?,
     useBlurSupport: Boolean?,
@@ -47,6 +48,7 @@ fun imageUrl(
     }
 
     if (listener != null) {
+        Timber.d("Listener is not null...")
         request = request.listener(object : RequestListener<Drawable> {
             override fun onResourceReady(
                 resource: Drawable?,
@@ -55,8 +57,7 @@ fun imageUrl(
                 dataSource: DataSource?,
                 isFirstResource: Boolean
             ): Boolean {
-                listener.onImageLoaded()
-                return false
+                return listener.onResourceReady(resource, model, target, dataSource, isFirstResource)
             }
 
             override fun onLoadFailed(
@@ -65,8 +66,7 @@ fun imageUrl(
                 target: Target<Drawable>?,
                 isFirstResource: Boolean
             ): Boolean {
-                listener.onImageLoadFailed()
-                return false
+                return listener.onLoadFailed(e, model, target, isFirstResource)
             }
         })
     }
