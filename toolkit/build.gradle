@@ -84,7 +84,7 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:4.11.0"
     implementation 'jp.wasabeef:glide-transformations:4.1.0'
 
-    implementation "com.squareup.okhttp3:okhttp:4.8.1"
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
 }
 
 afterEvaluate {
