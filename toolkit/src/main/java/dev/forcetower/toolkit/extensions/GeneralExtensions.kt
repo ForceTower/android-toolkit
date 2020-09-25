@@ -2,6 +2,7 @@ package dev.forcetower.toolkit.extensions
 
 import android.content.Context
 import android.util.TypedValue
+import androidx.annotation.AttrRes
 import androidx.lifecycle.MutableLiveData
 import kotlin.math.floor
 import kotlin.math.pow
@@ -16,4 +17,11 @@ fun Context.getPixelsFromDp(dp: Int): Float =
 fun Double.truncate(decimals: Int = 1): Double {
     val power = 10.0.pow(decimals.toDouble())
     return floor(this * power) / power
+}
+
+fun Context.resolveColorAttr(@AttrRes attribute: Int): Int {
+    val typedValue = obtainStyledAttributes(intArrayOf(attribute))
+    val color = typedValue.getColor(0, 0)
+    typedValue.recycle()
+    return color
 }
