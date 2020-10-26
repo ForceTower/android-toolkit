@@ -14,6 +14,7 @@ import dev.forcetower.toolkit.widget.outline.RoundedOutlineProvider
     "paddingTopSystemWindowInsets",
     "paddingEndSystemWindowInsets",
     "paddingBottomSystemWindowInsets",
+    "consumeSystemWindowInsets",
     requireAll = false
 )
 fun applySystemWindows(
@@ -21,7 +22,8 @@ fun applySystemWindows(
     applyLeft: Boolean,
     applyTop: Boolean,
     applyRight: Boolean,
-    applyBottom: Boolean
+    applyBottom: Boolean,
+    consumeInsets: Boolean = false
 ) {
     view.doOnApplyWindowInsets { _, insets, padding ->
         val left = if (applyLeft) insets.systemWindowInsetLeft else 0
@@ -35,6 +37,10 @@ fun applySystemWindows(
             padding.right + right,
             padding.bottom + bottom
         )
+
+        if (consumeInsets) {
+            insets.consumeSystemWindowInsets()
+        }
     }
 }
 
