@@ -7,7 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-abstract class SuspendableDataSource<Key, Value>(
+abstract class SuspendableDataSource<Key : Any, Value: Any>(
     private val scope: CoroutineScope,
     private val error: (Throwable) -> Unit
 ) : PageKeyedDataSource<Key, Value>() {
