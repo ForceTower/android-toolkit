@@ -34,13 +34,11 @@ val View.windowInsetsControllerCompat
     get() = ViewCompat.getWindowInsetsController(this)
 
 fun View.closeKeyboard() {
-    val insetsController = windowInsetsControllerCompat
-    insetsController?.hide(WindowInsetsCompat.Type.ime())
+    windowInsetsControllerCompat?.hide(WindowInsetsCompat.Type.ime())
 }
 
 fun View.openKeyboard() {
-    val insetsController = windowInsetsControllerCompat
-    insetsController?.show(WindowInsetsCompat.Type.ime())
+    windowInsetsControllerCompat?.show(WindowInsetsCompat.Type.ime())
 }
 
 fun View.fadeIn() {
