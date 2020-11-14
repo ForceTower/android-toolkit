@@ -22,7 +22,8 @@ import timber.log.Timber
     "blurImage",
     "useBlurSupport",
     "blurRadius",
-    "blurSampling"
+    "blurSampling",
+    "fallbackResource"
 ], requireAll = false)
 fun imageUrl(
     imageView: ImageView,
@@ -34,12 +35,14 @@ fun imageUrl(
     blurImage: Boolean?,
     useBlurSupport: Boolean?,
     blurRadius: Int?,
-    blurSampling: Int?
+    blurSampling: Int?,
+    fallbackResource: Int?
 ) {
     val load = imageUrl ?: imageUri ?: return
     var request = Glide.with(imageView).load(load)
     if (clipCircle == true) request = request.circleCrop()
     if (dontTransform == true) request = request.dontTransform()
+    if (fallbackResource != null) request = request.error(fallbackResource)
     if (blurImage == true) {
         request = if (useBlurSupport == true)
             request.transform(SupportRSBlurTransformation(blurRadius ?: 15, blurSampling ?: 3))
