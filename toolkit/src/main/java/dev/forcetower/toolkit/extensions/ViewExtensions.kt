@@ -62,11 +62,11 @@ private fun recordInitialPaddingForView(view: View) = InitialPadding(
 
 fun View.requestApplyInsetsWhenAttached() {
     if (isAttachedToWindow) {
-        requestApplyInsets()
+        ViewCompat.requestApplyInsets(this)
     } else {
         addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
             override fun onViewAttachedToWindow(v: View) {
-                v.requestApplyInsets()
+                ViewCompat.requestApplyInsets(v)
             }
 
             override fun onViewDetachedFromWindow(v: View) = Unit

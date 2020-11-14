@@ -1,13 +1,16 @@
 package dev.forcetower.toolkit.bindings
 
+import android.os.Build
 import android.view.View
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.appbar.AppBarLayout
 import dev.forcetower.toolkit.extensions.doOnApplyWindowInsets
 import dev.forcetower.toolkit.extensions.getPixelsFromDp
 import dev.forcetower.toolkit.widget.outline.CircularOutlineProvider
 import dev.forcetower.toolkit.widget.outline.RoundedOutlineProvider
+import timber.log.Timber
 
 @BindingAdapter(
     "paddingStartSystemWindowInsets",
@@ -25,11 +28,12 @@ fun applySystemWindows(
     applyBottom: Boolean,
     consumeInsets: Boolean = false
 ) {
-    view.doOnApplyWindowInsets { _, insets, padding ->
-        val left = if (applyLeft) insets.systemWindowInsetLeft else 0
-        val top = if (applyTop) insets.systemWindowInsetTop else 0
-        val right = if (applyRight) insets.systemWindowInsetRight else 0
-        val bottom = if (applyBottom) insets.systemWindowInsetBottom else 0
+    view.doOnApplyWindowInsets { _, allInsets, padding ->
+        val insets = allInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+        val left = if (applyLeft) insets.left else 0
+        val top = if (applyTop) insets.top else 0
+        val right = if (applyRight) insets.right else 0
+        val bottom = if (applyBottom) insets.bottom else 0
 
         view.setPadding(
             padding.left + left,
@@ -39,21 +43,25 @@ fun applySystemWindows(
         )
 
         if (consumeInsets) {
-            insets.consumeSystemWindowInsets()
+            WindowInsetsCompat.CONSUMED
         }
     }
 }
 
 @BindingAdapter("roundedViewRadius")
 fun roundedViewRadius(view: View, radius: Int) {
-    view.clipToOutline = true
-    view.outlineProvider = RoundedOutlineProvider(view.context.getPixelsFromDp(radius))
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        view.clipToOutline = true
+        view.outlineProvider = RoundedOutlineProvider(view.context.getPixelsFromDp(radius))
+    }
 }
 
 @BindingAdapter("clipToCircle")
 fun clipToCircle(view: View, clip: Boolean) {
-    view.clipToOutline = clip
-    view.outlineProvider = if (clip) CircularOutlineProvider else null
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        view.clipToOutline = clip
+        view.outlineProvider = if (clip) CircularOutlineProvider else null
+    }
 }
 
 @BindingAdapter("goneIf")
