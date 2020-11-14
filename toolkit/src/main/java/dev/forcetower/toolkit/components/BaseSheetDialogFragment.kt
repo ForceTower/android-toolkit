@@ -8,13 +8,10 @@ import androidx.annotation.CallSuper
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
 abstract class BaseSheetDialogFragment : BottomSheetDialogFragment() {
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
-
     @CallSuper
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val sheetDialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
@@ -30,5 +27,19 @@ abstract class BaseSheetDialogFragment : BottomSheetDialogFragment() {
             Timber.d(t, "Hum...")
         }
         return sheetDialog
+    }
+
+    fun showSnack(string: String, duration: Int = Snackbar.LENGTH_SHORT) {
+        getSnack(string, duration)?.show()
+    }
+
+    fun getSnack(string: String, duration: Int = Snackbar.LENGTH_SHORT): Snackbar? {
+        val activity = activity
+        return if (activity is BaseActivity) {
+            activity.getSnackInstance(string, duration)
+        } else {
+            Timber.i("Not part of BaseActivity")
+            null
+        }
     }
 }
