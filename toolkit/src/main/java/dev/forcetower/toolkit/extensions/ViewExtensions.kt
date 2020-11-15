@@ -5,8 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.annotation.LayoutRes
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -57,8 +56,20 @@ fun View.doOnApplyWindowInsets(f: (View, WindowInsetsCompat, InitialPadding) -> 
     requestApplyInsetsWhenAttached()
 }
 
+fun View.doOnApplyWindowMarginInsets(f: (View, WindowInsetsCompat, InitialPadding) -> Unit) {
+    val initialMargin = recordInitialMarginForView(this)
+    ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->
+        f(v, insets, initialMargin)
+        insets
+    }
+    requestApplyInsetsWhenAttached()
+}
+
 private fun recordInitialPaddingForView(view: View) = InitialPadding(
     view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom)
+
+private fun recordInitialMarginForView(view: View) = InitialPadding(
+    view.marginLeft, view.marginTop, view.marginRight, view.marginBottom)
 
 fun View.requestApplyInsetsWhenAttached() {
     if (isAttachedToWindow) {
