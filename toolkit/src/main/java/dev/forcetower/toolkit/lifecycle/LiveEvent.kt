@@ -15,6 +15,17 @@ open class LiveEvent<out T>(private val content: T) {
     }
 
     fun peek(): T = content
+
+    override fun equals(other: Any?): Boolean {
+        if (other is LiveEvent<*>) {
+            return other.content == content
+        }
+        return false
+    }
+
+    override fun hashCode(): Int {
+        return content?.hashCode() ?: 0
+    }
 }
 
 class EventObserver<T>(private val onEventUnhandled: (T) -> Unit) : Observer<LiveEvent<T>> {
