@@ -2,11 +2,13 @@ package dev.forcetower.toolkit.bindings
 
 import android.os.Build
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.appbar.AppBarLayout
 import dev.forcetower.toolkit.extensions.doOnApplyWindowInsets
+import dev.forcetower.toolkit.extensions.doOnApplyWindowMarginInsets
 import dev.forcetower.toolkit.extensions.getPixelsFromDp
 import dev.forcetower.toolkit.widget.outline.CircularOutlineProvider
 import dev.forcetower.toolkit.widget.outline.RoundedOutlineProvider
@@ -44,6 +46,40 @@ fun applySystemWindows(
 
         if (consumeInsets) {
             WindowInsetsCompat.CONSUMED
+        }
+    }
+}
+
+@BindingAdapter(
+    "marginStartSystemWindowInsets",
+    "marginTopSystemWindowInsets",
+    "marginEndSystemWindowInsets",
+    "marginBottomSystemWindowInsets",
+    requireAll = false
+)
+fun applyMarginSystemWindows(
+    view: View,
+    applyLeft: Boolean,
+    applyTop: Boolean,
+    applyRight: Boolean,
+    applyBottom: Boolean
+) {
+    view.doOnApplyWindowMarginInsets { _, allInsets, margins ->
+        val insets = allInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+        val left = if (applyLeft) insets.left else 0
+        val top = if (applyTop) insets.top else 0
+        val right = if (applyRight) insets.right else 0
+        val bottom = if (applyBottom) insets.bottom else 0
+
+        (view.layoutParams as? ViewGroup.MarginLayoutParams)?.apply {
+            setMargins(
+                margins.left + left,
+                margins.top + top,
+                margins.right + right,
+                margins.bottom + bottom
+            )
+        }?.also {
+            view.layoutParams = it
         }
     }
 }
