@@ -7,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import jp.wasabeef.glide.transformations.BlurTransformation
@@ -23,7 +24,8 @@ import timber.log.Timber
     "useBlurSupport",
     "blurRadius",
     "blurSampling",
-    "fallbackResource"
+    "fallbackResource",
+    "crossFade"
 ], requireAll = false)
 fun imageUrl(
     imageView: ImageView,
@@ -36,7 +38,8 @@ fun imageUrl(
     useBlurSupport: Boolean?,
     blurRadius: Int?,
     blurSampling: Int?,
-    fallbackResource: Int?
+    fallbackResource: Int?,
+    crossFade: Boolean?
 ) {
     val load = imageUrl ?: imageUri ?: return
     var request = Glide.with(imageView).load(load)
@@ -49,6 +52,7 @@ fun imageUrl(
         else
             request.transform(BlurTransformation(blurRadius ?: 15, blurSampling ?: 3))
     }
+    if (crossFade == true) request = request.transition(DrawableTransitionOptions.withCrossFade())
 
     if (listener != null) {
         Timber.d("Listener is not null...")
