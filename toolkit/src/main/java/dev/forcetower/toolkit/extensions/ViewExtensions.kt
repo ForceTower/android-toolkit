@@ -1,5 +1,8 @@
 package dev.forcetower.toolkit.extensions
 
+import android.app.Activity
+import android.content.Context
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +12,7 @@ import androidx.core.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import timber.log.Timber
 
 fun View.inflater(): LayoutInflater = LayoutInflater.from(context)
 
@@ -38,6 +42,16 @@ fun View.closeKeyboard() {
 
 fun View.openKeyboard() {
     windowInsetsControllerCompat?.show(WindowInsetsCompat.Type.ime())
+}
+
+fun View.openKeyboardWithActivity(activity: Activity) {
+    val controller = WindowCompat.getInsetsController(activity.window, this)
+    controller?.show(WindowInsetsCompat.Type.ime())
+}
+
+fun View.closeKeyboardWithActivity(activity: Activity) {
+    val controller = WindowCompat.getInsetsController(activity.window, this)
+    controller?.hide(WindowInsetsCompat.Type.ime())
 }
 
 fun View.fadeIn() {

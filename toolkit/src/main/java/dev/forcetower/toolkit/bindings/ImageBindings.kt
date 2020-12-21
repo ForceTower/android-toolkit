@@ -10,6 +10,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import dev.forcetower.toolkit.extensions.getPixelsFromDp
 import jp.wasabeef.glide.transformations.BlurTransformation
 import jp.wasabeef.glide.transformations.SupportRSBlurTransformation
 import timber.log.Timber
@@ -25,7 +26,8 @@ import timber.log.Timber
     "blurRadius",
     "blurSampling",
     "fallbackResource",
-    "crossFade"
+    "crossFade",
+    "elevationAfterLoad"
 ], requireAll = false)
 fun imageUrl(
     imageView: ImageView,
@@ -39,7 +41,8 @@ fun imageUrl(
     blurRadius: Int?,
     blurSampling: Int?,
     fallbackResource: Int?,
-    crossFade: Boolean?
+    crossFade: Boolean?,
+    elevationAfterLoad: Int? = null
 ) {
     val load = imageUrl ?: imageUri ?: return
     var request = Glide.with(imageView).load(load)
@@ -64,6 +67,9 @@ fun imageUrl(
                 dataSource: DataSource?,
                 isFirstResource: Boolean
             ): Boolean {
+                if (elevationAfterLoad != null) {
+                    imageView.elevation = imageView.context.getPixelsFromDp(elevationAfterLoad)
+                }
                 return listener.onResourceReady(resource, model, target, dataSource, isFirstResource)
             }
 
