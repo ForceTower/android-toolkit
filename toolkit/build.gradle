@@ -65,9 +65,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
 
     // Room
-    implementation "androidx.room:room-runtime:2.3.0-alpha03"
-    implementation "androidx.room:room-ktx:2.3.0-alpha03"
-    kapt "androidx.room:room-compiler:2.3.0-alpha03"
+    implementation 'androidx.room:room-runtime:2.3.0-alpha04'
+    implementation 'androidx.room:room-ktx:2.3.0-alpha04'
+    kapt 'androidx.room:room-compiler:2.3.0-alpha04'
 
     // Paging
     implementation "androidx.paging:paging-runtime-ktx:2.1.2"
@@ -85,7 +85,7 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:4.1.0'
 
     // Paging
-    implementation "androidx.paging:paging-runtime-ktx:3.0.0-alpha07"
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-alpha12'
 
     // Network
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
