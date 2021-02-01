@@ -1,18 +1,23 @@
 package dev.forcetower.toolkit.extensions
 
 import android.app.Activity
-import android.content.Context
-import android.view.ContextThemeWrapper
+import android.content.ContextWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.annotation.LayoutRes
-import androidx.core.view.*
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.marginBottom
+import androidx.core.view.marginLeft
+import androidx.core.view.marginRight
+import androidx.core.view.marginTop
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import timber.log.Timber
 
 fun View.inflater(): LayoutInflater = LayoutInflater.from(context)
 
@@ -33,8 +38,21 @@ fun RecyclerView.clearDecorations() {
     }
 }
 
-val View.windowInsetsControllerCompat
-    get() = ViewCompat.getWindowInsetsController(this)
+fun Activity.windowInsetsControllerCompat(view: View): WindowInsetsControllerCompat? {
+    return WindowCompat.getInsetsController(window, view)
+}
+
+
+val View.windowInsetsControllerCompat: WindowInsetsControllerCompat?
+    get() {
+        val result = ViewCompat.getWindowInsetsController(this)
+        return if (result != null) {
+            result
+        } else {
+            val base = (context as? ContextWrapper)?.baseContext
+            (base as? Activity)?.let { WindowCompat.getInsetsController(it.window, this) }
+        }
+    }
 
 fun View.closeKeyboard() {
     windowInsetsControllerCompat?.hide(WindowInsetsCompat.Type.ime())
