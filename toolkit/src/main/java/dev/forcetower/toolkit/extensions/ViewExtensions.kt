@@ -2,6 +2,7 @@ package dev.forcetower.toolkit.extensions
 
 import android.app.Activity
 import android.content.ContextWrapper
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,12 +50,14 @@ fun Activity.windowInsetsControllerCompat(view: View): WindowInsetsControllerCom
 
 val View.windowInsetsControllerCompat: WindowInsetsControllerCompat?
     get() {
-        val result = ViewCompat.getWindowInsetsController(this)
-        return if (result != null) {
-            result
+        return if (Build.VERSION.SDK_INT >= 30) {
+            ViewCompat.getWindowInsetsController(this)
         } else {
-            val base = (context as? ContextWrapper)?.baseContext
-            (base as? Activity)?.let { WindowCompat.getInsetsController(it.window, this) }
+            var ctx = context
+            while (ctx is ContextWrapper) {
+                ctx = ctx.baseContext
+            }
+            (ctx as? Activity)?.let { WindowCompat.getInsetsController(it.window, this) }
         }
     }
 
