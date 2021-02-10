@@ -30,6 +30,11 @@ inline fun <reified T : ViewDataBinding> LayoutInflater.inflate(@LayoutRes res: 
     return DataBindingUtil.inflate(this, res, null, false)
 }
 
+inline fun <T : ViewDataBinding> T.executeBindingsAfter(block: T.() -> Unit) {
+    block()
+    executePendingBindings()
+}
+
 fun RecyclerView.clearDecorations() {
     if (itemDecorationCount > 0) {
         for (i in itemDecorationCount - 1 downTo 0) {
@@ -41,7 +46,6 @@ fun RecyclerView.clearDecorations() {
 fun Activity.windowInsetsControllerCompat(view: View): WindowInsetsControllerCompat? {
     return WindowCompat.getInsetsController(window, view)
 }
-
 
 val View.windowInsetsControllerCompat: WindowInsetsControllerCompat?
     get() {
