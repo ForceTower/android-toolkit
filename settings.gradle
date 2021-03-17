@@ -1,3 +1,0 @@
-include ':toolkit'
-include ':app'
-rootProject.name = "App"
