@@ -53,7 +53,7 @@ dependencies {
 
     // Android X
     implementation 'androidx.core:core-ktx:1.5.0-beta03'
-    implementation "androidx.annotation:annotation:1.1.0"
+    implementation "androidx.annotation:annotation:1.2.0"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -69,9 +69,6 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.3.0-beta03'
     kapt 'androidx.room:room-compiler:2.3.0-beta03'
 
-    // Paging
-    implementation "androidx.paging:paging-runtime-ktx:2.1.2"
-
     // Dependency injection
     implementation "com.google.dagger:hilt-android:2.33-beta"
     kapt "com.google.dagger:hilt-android-compiler:2.33-beta"
@@ -85,7 +82,7 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:4.1.0'
 
     // Paging
-    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-beta02'
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-beta03'
 
     // Network
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
