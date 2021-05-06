@@ -49,17 +49,7 @@ fun Activity.windowInsetsControllerCompat(view: View): WindowInsetsControllerCom
 }
 
 val View.windowInsetsControllerCompat: WindowInsetsControllerCompat?
-    get() {
-        return if (Build.VERSION.SDK_INT >= 30) {
-            ViewCompat.getWindowInsetsController(this)
-        } else {
-            var ctx = context
-            while (ctx is ContextWrapper) {
-                ctx = ctx.baseContext
-            }
-            (ctx as? Activity)?.let { WindowCompat.getInsetsController(it.window, this) }
-        }
-    }
+    get() = ViewCompat.getWindowInsetsController(this)
 
 fun View.closeKeyboard() {
     windowInsetsControllerCompat?.hide(WindowInsetsCompat.Type.ime())
