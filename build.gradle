@@ -36,20 +36,11 @@ android {
             option("-Xmaxerrs", 1000)
         }
     }
-
-    compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.32"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.0"
 
     // Android X
     implementation 'androidx.core:core-ktx:1.5.0-rc02'
