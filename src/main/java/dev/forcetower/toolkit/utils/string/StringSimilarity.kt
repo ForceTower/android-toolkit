@@ -22,8 +22,8 @@ object StringSimilarity {
     private fun editDistance(string1: String, string2: String): Int {
         var s1 = string1
         var s2 = string2
-        s1 = s1.toLowerCase(Locale.getDefault())
-        s2 = s2.toLowerCase(Locale.getDefault())
+        s1 = s1.lowercase(Locale.getDefault())
+        s2 = s2.lowercase(Locale.getDefault())
         val costs = IntArray(s2.length + 1)
         for (i in 0..s1.length) {
             var lastValue = i
