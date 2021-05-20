@@ -2,10 +2,8 @@
 
 package dev.forcetower.toolkit.extensions
 
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 
-@ExperimentalCoroutinesApi
 public inline fun <T1, T2, T3, T4, T5, T6, T7, R> combine(
     flow: Flow<T1>,
     flow2: Flow<T2>,
@@ -35,7 +33,6 @@ public inline fun <T1, T2, T3, T4, T5, T6, T7, R> combine(
     )
 }
 
-@ExperimentalCoroutinesApi
 public inline fun <T1, T2, T3, T4, T5, T6, R> combine(
     flow: Flow<T1>,
     flow2: Flow<T2>,
