@@ -11,7 +11,6 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.CallSuper
 import androidx.fragment.app.DialogFragment
-import javax.inject.Inject
 
 abstract class BaseDialogFragment : DialogFragment() {
     @CallSuper

@@ -59,16 +59,6 @@ fun View.openKeyboard() {
     windowInsetsControllerCompat?.show(WindowInsetsCompat.Type.ime())
 }
 
-fun View.openKeyboardWithActivity(activity: Activity) {
-    val controller = WindowCompat.getInsetsController(activity.window, this)
-    controller?.show(WindowInsetsCompat.Type.ime())
-}
-
-fun View.closeKeyboardWithActivity(activity: Activity) {
-    val controller = WindowCompat.getInsetsController(activity.window, this)
-    controller?.hide(WindowInsetsCompat.Type.ime())
-}
-
 fun View.fadeIn() {
     val fadeInAnim = AnimationUtils.loadAnimation(context, android.R.anim.fade_in)
     visibility = View.VISIBLE
