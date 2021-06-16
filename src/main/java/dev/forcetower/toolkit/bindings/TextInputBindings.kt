@@ -2,7 +2,6 @@ package dev.forcetower.toolkit.bindings
 
 import android.content.res.ColorStateList
 import androidx.annotation.StringRes
-import androidx.core.view.children
 import androidx.core.view.get
 import androidx.databinding.BindingAdapter
 import com.google.android.material.textfield.TextInputEditText

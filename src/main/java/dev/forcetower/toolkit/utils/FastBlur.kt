@@ -7,7 +7,6 @@ import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
 
-
 object FastBlur {
     fun blur(context: Context, inBitmap: Bitmap, radius: Float): Bitmap {
         val bitmap: Bitmap = inBitmap.copy(inBitmap.config, true)

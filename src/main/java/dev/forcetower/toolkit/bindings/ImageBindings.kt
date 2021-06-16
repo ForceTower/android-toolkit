@@ -15,20 +15,23 @@ import jp.wasabeef.glide.transformations.BlurTransformation
 import jp.wasabeef.glide.transformations.SupportRSBlurTransformation
 import timber.log.Timber
 
-@BindingAdapter(value = [
-    "imageUrl",
-    "imageUri",
-    "clipCircle",
-    "listener",
-    "dontTransform",
-    "blurImage",
-    "useBlurSupport",
-    "blurRadius",
-    "blurSampling",
-    "fallbackResource",
-    "crossFade",
-    "elevationAfterLoad"
-], requireAll = false)
+@BindingAdapter(
+    value = [
+        "imageUrl",
+        "imageUri",
+        "clipCircle",
+        "listener",
+        "dontTransform",
+        "blurImage",
+        "useBlurSupport",
+        "blurRadius",
+        "blurSampling",
+        "fallbackResource",
+        "crossFade",
+        "elevationAfterLoad"
+    ],
+    requireAll = false
+)
 fun imageUrl(
     imageView: ImageView,
     imageUrl: String?,

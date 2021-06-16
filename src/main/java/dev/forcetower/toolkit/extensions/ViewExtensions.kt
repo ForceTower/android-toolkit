@@ -1,8 +1,6 @@
 package dev.forcetower.toolkit.extensions
 
 import android.app.Activity
-import android.content.ContextWrapper
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,10 +83,12 @@ fun View.doOnApplyWindowMarginInsets(f: (View, WindowInsetsCompat, InitialPaddin
 }
 
 private fun recordInitialPaddingForView(view: View) = InitialPadding(
-    view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom)
+    view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom
+)
 
 private fun recordInitialMarginForView(view: View) = InitialPadding(
-    view.marginLeft, view.marginTop, view.marginRight, view.marginBottom)
+    view.marginLeft, view.marginTop, view.marginRight, view.marginBottom
+)
 
 fun View.requestApplyInsetsWhenAttached() {
     if (isAttachedToWindow) {

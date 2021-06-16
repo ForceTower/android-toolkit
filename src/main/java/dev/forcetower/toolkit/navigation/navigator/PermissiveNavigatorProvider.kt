@@ -7,7 +7,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.NavigatorProvider
 
-
 @Suppress("UNCHECKED_CAST")
 class PermissiveNavigatorProvider : NavigatorProvider() {
     init {

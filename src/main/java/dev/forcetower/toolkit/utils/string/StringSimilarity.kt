@@ -2,7 +2,6 @@ package dev.forcetower.toolkit.utils.string
 
 import java.util.Locale
 
-
 object StringSimilarity {
     fun similarity(s1: String, s2: String): Double {
         var longer = s1

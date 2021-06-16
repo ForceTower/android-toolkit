@@ -6,13 +6,11 @@ import android.view.ViewGroup
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.google.android.material.appbar.AppBarLayout
 import dev.forcetower.toolkit.extensions.doOnApplyWindowInsets
 import dev.forcetower.toolkit.extensions.doOnApplyWindowMarginInsets
 import dev.forcetower.toolkit.extensions.getPixelsFromDp
 import dev.forcetower.toolkit.widget.outline.CircularOutlineProvider
 import dev.forcetower.toolkit.widget.outline.RoundedOutlineProvider
-import timber.log.Timber
 
 @BindingAdapter(
     "paddingStartSystemWindowInsets",

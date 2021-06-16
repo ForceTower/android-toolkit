@@ -1,7 +1,6 @@
 package dev.forcetower.toolkit.components
 
 import android.app.Dialog
-import android.content.Context
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.annotation.CallSuper
