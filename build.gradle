@@ -26,12 +26,6 @@ android {
 
     buildFeatures {
         dataBinding true
-        compose true
-    }
-
-    composeOptions {
-        kotlinCompilerVersion "1.5.21"
-        kotlinCompilerExtensionVersion "1.0.0"
     }
 
     kapt {
