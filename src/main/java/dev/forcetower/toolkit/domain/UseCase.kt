@@ -3,7 +3,6 @@ package dev.forcetower.toolkit.domain
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 abstract class UseCase<in P, R>(
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -16,7 +15,6 @@ abstract class UseCase<in P, R>(
                 }
             }
         } catch (e: Exception) {
-            Timber.d(e)
             Result.Error(e)
         }
     }
