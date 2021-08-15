@@ -12,7 +12,6 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import dev.forcetower.toolkit.extensions.getPixelsFromDp
 import jp.wasabeef.glide.transformations.BlurTransformation
-import jp.wasabeef.glide.transformations.SupportRSBlurTransformation
 import timber.log.Timber
 
 @BindingAdapter(
@@ -23,7 +22,6 @@ import timber.log.Timber
         "listener",
         "dontTransform",
         "blurImage",
-        "useBlurSupport",
         "blurRadius",
         "blurSampling",
         "fallbackResource",
@@ -40,7 +38,6 @@ fun imageUrl(
     listener: RequestListener<Drawable>?,
     dontTransform: Boolean?,
     blurImage: Boolean?,
-    useBlurSupport: Boolean?,
     blurRadius: Int?,
     blurSampling: Int?,
     fallbackResource: Int?,
@@ -52,12 +49,9 @@ fun imageUrl(
     if (clipCircle == true) request = request.circleCrop()
     if (dontTransform == true) request = request.dontTransform()
     if (fallbackResource != null) request = request.error(fallbackResource)
-    if (blurImage == true) {
-        request = if (useBlurSupport == true)
-            request.transform(SupportRSBlurTransformation(blurRadius ?: 15, blurSampling ?: 3))
-        else
-            request.transform(BlurTransformation(blurRadius ?: 15, blurSampling ?: 3))
-    }
+    if (blurImage == true)
+        request = request.transform(BlurTransformation(blurRadius ?: 15, blurSampling ?: 3))
+
     if (crossFade == true) request = request.transition(DrawableTransitionOptions.withCrossFade())
 
     if (listener != null) {
@@ -87,9 +81,4 @@ fun imageUrl(
         })
     }
     request.into(imageView)
-}
-
-interface ImageLoadListener {
-    fun onImageLoaded()
-    fun onImageLoadFailed()
 }
