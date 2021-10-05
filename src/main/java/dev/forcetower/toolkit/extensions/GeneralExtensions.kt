@@ -1,5 +1,7 @@
 package dev.forcetower.toolkit.extensions
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.util.TypedValue
 import androidx.annotation.AttrRes
@@ -24,4 +26,9 @@ fun Context.resolveColorAttr(@AttrRes attribute: Int): Int {
     val color = typedValue.getColor(0, 0)
     typedValue.recycle()
     return color
+}
+
+fun Context.copyToClipboard(text: CharSequence) {
+    val clipboard = ContextCompat.getSystemService(this, ClipboardManager::class.java)
+    clipboard?.setPrimaryClip(ClipData.newPlainText("", text))
 }
