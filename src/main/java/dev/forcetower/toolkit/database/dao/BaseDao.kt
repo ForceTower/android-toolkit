@@ -46,6 +46,4 @@ abstract class BaseDao<T> {
         val result = insertIgnore(value)
         if (result == -1L) update(value)
     }
-
-    protected open suspend fun getValueByIDDirect(value: T): T? = null
 }
