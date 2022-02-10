@@ -2,8 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
-apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 31
@@ -55,18 +53,15 @@ dependencies {
     // Room
     implementation 'androidx.room:room-runtime:2.4.1'
     implementation 'androidx.room:room-ktx:2.4.1'
-    kapt 'androidx.room:room-compiler:2.4.1'
 
     // Dependency injection
     implementation "com.google.dagger:hilt-android:2.40.5"
-    kapt "com.google.dagger:hilt-android-compiler:2.40.5"
 
     // Logs
     implementation "com.jakewharton.timber:timber:5.0.1"
 
     // Image
     implementation 'com.github.bumptech.glide:glide:4.12.0'
-    kapt 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
 
     // Paging
@@ -74,19 +69,5 @@ dependencies {
 
     // Network
     implementation "com.squareup.okhttp3:okhttp:4.9.2"
-    implementation "org.jetbrains.kotlin:kotlin-script-runtime:1.6.10"
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            toolkitRelease(MavenPublication) {
-                from components.release
-
-                groupId = 'dev.forcetower.toolkit'
-                artifactId = 'toolkit'
-                version = '1.0.0'
-            }
-        }
-    }
-}

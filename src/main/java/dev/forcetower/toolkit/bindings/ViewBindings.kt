@@ -84,18 +84,14 @@ fun applyMarginSystemWindows(
 
 @BindingAdapter("roundedViewRadius")
 fun roundedViewRadius(view: View, radius: Int) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        view.clipToOutline = true
-        view.outlineProvider = RoundedOutlineProvider(view.context.getPixelsFromDp(radius))
-    }
+    view.clipToOutline = true
+    view.outlineProvider = RoundedOutlineProvider(view.context.getPixelsFromDp(radius))
 }
 
 @BindingAdapter("clipToCircle")
 fun clipToCircle(view: View, clip: Boolean) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        view.clipToOutline = clip
-        view.outlineProvider = if (clip) CircularOutlineProvider else null
-    }
+    view.clipToOutline = clip
+    view.outlineProvider = if (clip) CircularOutlineProvider else null
 }
 
 @BindingAdapter("goneIf")

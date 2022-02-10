@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.util.TypedValue
 import androidx.annotation.AttrRes
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import kotlin.math.floor
 import kotlin.math.pow
